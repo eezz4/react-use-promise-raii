@@ -10,7 +10,28 @@ npm install --save react-use-promise-raii
 
 ## Usage
 
+#### global blocking io : example1 + example2 + example3
+
+- example1: provider installation is required.
 ```tsx
+import { ProviderPromiseRaii } from "react-use-promise-raii";
+
+export default function App() {
+  return (
+    <>
+      <GlobalStyle />
+      <ProviderPromiseRaii>
+        <HomePage/>
+      </ProviderPromiseRaii>
+    </>
+  );
+
+```
+
+- example2: When you need global blocking...
+```tsx
+import { useCheckPromiseRaii } from "react-use-promise-raii";
+
 const useBlockingIoPreventKeyEvents = (isBlocking: boolean) => {
   const preventer = useMemo(() => {
     const keyEventArr = ['keydown', 'keypress', 'keyup']
@@ -64,7 +85,10 @@ const WrBlockingIo = styled.div<{ isBlocking: boolean }>`
 `
 ```
 
+- example3: When you want to delay a promise.
 ```ts
+import { usePromiseRaiiSleep } from "react-use-promise-raii";
+
 export const useAxios = () => {
   const raiiSleep = usePromiseRaiiSleep();
 
